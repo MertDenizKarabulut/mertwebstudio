@@ -100,11 +100,12 @@
         color: #94a3b8;
     }
     h1,h2{
-        transition: color 0.3s ease;
+        transition: color 0.3s ease, transform 0.3s ease;
     }
     h1:hover,
     h2:hover{
         color: #38bdf8;
+        transform: translateY(-2px);
     }
     .project-list{
         display: grid;
@@ -128,7 +129,8 @@
     }
     .project-card:hover{
         transform: translateY(-8px);
-        box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+        background-color: #111428;
     }
     .btn{
         margin-top: 30px;
@@ -144,4 +146,5 @@
     .btn:hover{
         background: #0ea0e9;
         transform: scale(1.05);
+        box-shadow: 0 8px 20px rgba(56,189,248,0.5);
     }
