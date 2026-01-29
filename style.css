@@ -127,6 +127,10 @@
         color: #94a3b8;
         line-height: 1.5;
     }
+    .project-card a{
+        color: #94a3b8;
+        line-height: 1.5;
+    }
     .project-card:hover{
         transform: translateY(-8px);
         box-shadow: 0 15px 30px rgba(0,0,0,0.5);
@@ -148,3 +152,4 @@
         transform: scale(1.05);
         box-shadow: 0 8px 20px rgba(56,189,248,0.5);
     }
+
