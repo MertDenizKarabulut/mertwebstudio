@@ -3,77 +3,535 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Mert Web Studio olarak kurumsal, modern ve mobil uyumlu web siteleri tasarlıyorum. İşletmeler ve kişisel projeler için profesyonel web tasarım çözümleri.">
-    <meta name="keywords" content="mert web studio, web tasarım, web developer, responsive web sitesi, işletme web sitesi, modern web tasarım, freelancer web developer">
-    <title>Mert Web Studio | Kurumsal Web Tasarım & Web Sitesi Hizmetleri</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link rel="icon" href="favicon.ico">
-    
+    <title>Birlikte Web | Premium Dijital Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-soft-blue: #f0f4f8;
+            --accent-pink: #ff8fa3;
+            --deep-blue: #1a2a6c;
+            --text-dark: #2d3436;
+            --text-light: #636e72;
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.85);
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
 
-    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--primary-soft-blue);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Navbar --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 0;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--deep-blue);
+            text-decoration: none;
+            letter-spacing: -1px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            margin-left: 30px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-pink);
+        }
+
+        /* --- Header / Hero --- */
+        header {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+            padding-top: 80px;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            margin-bottom: 20px;
+            color: var(--deep-blue);
+            line-height: 1.1;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 650px;
+            margin: 0 auto 35px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 18px 45px;
+            background-color: var(--accent-pink);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: 0 10px 20px rgba(255, 143, 163, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 143, 163, 0.5);
+        }
+
+        /* --- Biz Kimiz --- */
+        #biz-kimiz {
+            padding: 120px 0;
+            background: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-title h2 {
+            font-size: 2.8rem;
+            color: var(--deep-blue);
+            margin-bottom: 15px;
+        }
+
+        .about-flex {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 320px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: var(--primary-soft-blue);
+            color: var(--deep-blue);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- Ne Yapıyoruz --- */
+        #ne-yapiyoruz {
+            padding: 120px 0;
+            background: #f9fbff;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 45px;
+            border-radius: 24px;
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.02);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent-pink);
+            transform: scaleX(0);
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.06);
+        }
+
+        .service-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--deep-blue);
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* --- Seçili Projeler --- */
+        #projeler {
+            padding: 120px 0;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 40px;
+        }
+
+        .project-card {
+            position: relative;
+            background: var(--white);
+            border-radius: 30px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(45deg, #eee, #f9f9f9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #bbb;
+        }
+
+        .project-info {
+            padding: 35px;
+        }
+
+        .project-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 40px 80px rgba(255, 143, 163, 0.12);
+        }
+
+        /* --- Müşteri Yorumları --- */
+        #yorumlar {
+            padding: 120px 0;
+            background: var(--deep-blue);
+            color: var(--white);
+        }
+
+        #yorumlar h2 { color: var(--white); }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: rgba(255,255,255,0.03);
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: var(--transition);
+        }
+
+        .testimonial-card:hover {
+            background: rgba(255,255,255,0.07);
+            transform: translateY(-5px);
+        }
+
+        .stars { color: #f1c40f; margin-bottom: 15px; font-size: 1.2rem; }
+
+        /* --- Referanslar --- */
+        .logos-slide {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            opacity: 0.4;
+            padding: 60px 0;
+            filter: grayscale(1);
+            font-weight: 700;
+            letter-spacing: 3px;
+            font-size: 0.9rem;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            padding: 60px 0;
+            text-align: center;
+            background: var(--white);
+            border-top: 1px solid #f0f0f0;
+        }
+
+        /* --- EKSTRA MOBİL UYUMLULUK CSS --- */
+        @media (max-width: 992px) {
+            .project-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-content { padding: 0 20px; }
+            .nav-links { display: none; } /* Mobilde sade görünüm için menü gizlendi */
+            .logo { font-size: 1.2rem; }
+            
+            header { height: auto; padding: 150px 0 100px 0; }
+            .hero-content h1 { font-size: 2.2rem; }
+            .hero-content p { font-size: 1rem; padding: 0 10px; }
+            
+            #biz-kimiz, #ne-yapiyoruz, #projeler, #yorumlar, #iletisim { padding: 80px 0; }
+            .section-title h2 { font-size: 2rem; }
+            
+            .about-flex { gap: 30px; text-align: center; }
+            .about-text { min-width: 100%; }
+            
+            .services-grid, .project-grid, .testimonial-grid { 
+                grid-template-columns: 1fr; 
+                gap: 20px;
+            }
+            
+            .service-card, .project-info, .testimonial-card { padding: 30px 20px; }
+            
+            #iletisim h2 { font-size: 2.2rem !important; }
+        }
+    </style>
 </head>
 <body>
-   
+
+    <nav id="main-nav">
+        <div class="container nav-content">
+            <a href="#" class="logo">Birlikte Web</a>
+            <div class="nav-links">
+                <a href="#biz-kimiz">Biz Kimiz</a>
+                <a href="#ne-yapiyoruz">Hizmetler</a>
+                <a href="#projeler">Projeler</a>
+                <a href="#iletisim">İletişim</a>
+            </div>
+        </div>
+    </nav>
+
     <header>
-         
-    <h1>Mert Web Studio | Kurumsal Web Tasarım ve Profesyonel Web Sitesi Çözümleri</h1>
-        <p class="title">Modern, sade ve kullanıcı odaklı web projeleri.</p>
-        <a href="mailto:mertdenizkarabulut33@gmail.com" target="_blank" class="btn">Benimle İletişime Geç</a>
+        <div class="container hero-content">
+            <h1 class="reveal">Dijital Hikayenizi <br>Birlikte Yazalım</h1>
+            <p class="reveal">Üniversite ruhuyla, profesyonel dokunuşları birleştiriyoruz. Markanız için en elit web çözümleri burada.</p>
+            <a href="https://www.instagram.com/birliktewebstudio/" target="_blank" class="btn-primary reveal">Ücretsiz Demo Başlat</a>
+        </div>
     </header>
 
-    <section class="about">
-    <h2>Hakkımda</h2>
-    <p>Merhaba, ben Mert. Mert Web Studio çatısı altında kurumsal web tasarım, kişisel web sitesi ve mobil uyumlu web projeleri geliştiriyorum. 
-    Amacım markaların dijital dünyada daha güçlü ve profesyonel görünmesini sağlamak.</p>
-
-    </section>
-    
-    <section class="projects">
-        <h2>Projeler</h2>
-        <div class="project-list">
-            <div class="project-card">
-                <h3>Kişisel Tanıtım Sitesi</h3>
-                <p>Modern ve reponsive kişisel web sitesi.</p>
+    <section id="biz-kimiz">
+        <div class="container about-flex">
+            <div class="about-text reveal">
+                <span class="badge">Hakkımızda</span>
+                <h2>Genç, Dinamik ve Tamamen Profesyonel</h2>
+                <p>Biz, tasarım dünyasına taze bir soluk getirmek isteyen iki üniversite öğrencisiyiz. "Birlikte Web" ismi, müşterilerimizle kurduğumuz şeffaf ve ortak çalışma disiplininden geliyor. Modern teknolojileri, samimi bir iletişimle harmanlayıp size özel çözümler üretiyoruz.</p>
             </div>
-         
-        <div class="project-card">
-            <h3>Sosyal Medya Açılış Sayfası</h3>
-            <p>Sosyal medya için hızlı ve sade açılış sayfası.</p>
-        </div>
-        <div class="project-card">
-        <h3>Kurumsal Web Sitesi Tasarımı</h3>
-        <p>Mobil uyumlu, hızlı ve modern kurumsal web sitesi projesi.</p>
-        </div>
-        <div class="project-card">
-        <h3>Yayındaki Projeler:</h3>
-        <a href="https://mertdenizkarabulut.github.io/example/" target="_blank">Örnek Kuaför Sayfası</a>
-        </div>    
+            <div class="about-text reveal">
+                <div style="background: linear-gradient(135deg, var(--accent-pink), #ffc3a0); height: 300px; border-radius: 40px; width: 100%; opacity: 0.15; display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--accent-pink);">
+                    PREMIUM STUDIO IMAGE
+                </div>
+            </div>
         </div>
     </section>
 
-    <section class="contact" id="contact">
-        <h2>İletişim</h2>
-        <p>Proje veya fiyat almak için ulaşabilirsiniz. 👇</p>
-        <div class="contact-icons">
-        <a href="https://www.instagram.com/merrttkarabulut/" target="_blank">
-            <i class="fa-brands fa-instagram"></i>
-       </a>
-       <a href="mailto:mertdenizkarabulut33@gmail.com">
-         <i class="fa-solid fa-envelope"></i>
-      </a>
-      <a href="https://www.linkedin.com/in/mert-deniz-karabulut-24176533a/ " target="_blank">
-        <i class="fa-brands fa-linkedin"></i>
-      </a>
-</div>
+    <section id="ne-yapiyoruz">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>Hizmetlerimiz</h2>
+                <p style="color: var(--text-light);">Hayallerinizi dijital birer sanat eserine dönüştürüyoruz.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <h3>Kurumsal Web Sitesi</h3>
+                    <p>Şirketinizin prestijini yansıtan, güven veren ve kurumsal kimliğinizle tam uyumlu profesyonel çözümler.</p>
+                </div>
+                <div class="service-card reveal">
+                    <h3>Kişisel Web Sitesi</h3>
+                    <p>Kendi markanızı yaratın. CV, portfolyo veya blog olarak kullanabileceğiniz, sizi yansıtan elit tasarımlar.</p>
+                </div>
+                <div class="service-card reveal">
+                    <h3>Sevgili & Arkadaşlık</h3>
+                    <p>Anılarınızı ölümsüzleştirin. Yıldönümleri veya özel günler için hazırlanan, QR kodlu duygusal dijital yolculuklar.</p>
+                </div>
+                <div class="service-card reveal">
+                    <h3>Hediyelik Web Sayfaları</h3>
+                    <p>Sıradan hediyeleri unutun. Sevdiklerinize özel, sürprizlerle dolu ve onlara özel hazırlanmış dijital deneyimler.</p>
+                </div>
+                <div class="service-card reveal">
+                    <h3>Modern UI/UX</h3>
+                    <p>Sadece güzel değil, aynı zamanda kullanıcı dostu. Ziyaretçilerinizi sitenizde daha uzun süre tutan akışlar.</p>
+                </div>
+                <div class="service-card reveal">
+                    <h3>Hız & SEO</h3>
+                    <p>Google sıralamalarında üstlerde yer alan, ışık hızında açılan teknik altyapısı kusursuz sayfalar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projeler">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>Portfolyo</h2>
+            </div>
+            <div class="project-grid">
+                <div class="project-card reveal">
+                    <div class="project-img">[Aşk Hikayesi Konsepti]</div>
+                    <div class="project-info">
+                        <span class="badge">Özel Gün</span>
+                        <h3>Our Journey</h3>
+                        <p>Bir çiftin tüm anılarını interaktif bir harita üzerinde birleştiren dijital hediye.</p>
+                    </div>
+                </div>
+                <div class="project-card reveal">
+                    <div class="project-img">[Yaratıcı Sanatçı Portfolyosu]</div>
+                    <div class="project-info">
+                        <span class="badge">Kişisel Web</span>
+                        <h3>Artist Canvas</h3>
+                        <p>Minimalist, işlerin ön planda olduğu ultra modern bir sanatçı sayfası.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="yorumlar">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>Bize Güvenenler</h2>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card reveal">
+                    <div class="stars">★★★★★</div>
+                    <p>"Sevgilime yaptırdığım web sitesi hayatımda verdiğim en anlamlı hediyeydi. Çok teşekkürler!"</p>
+                    <h4 style="margin-top: 15px;">— Merve S.</h4>
+                </div>
+                <div class="testimonial-card reveal">
+                    <div class="stars">★★★★★</div>
+                    <p>"Kişisel markam için çalıştık, her detay tam istediğim gibi oldu. Genç vizyon her zaman başka."</p>
+                    <h4 style="margin-top: 15px;">— Caner B.</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="logos-slide reveal">
+            <span>PRESTIGE STUDIO</span>
+            <span>MODERN ART</span>
+            <span>GLOBAL MIND</span>
+            <span>CREATIVE HUB</span>
+        </div>
+    </div>
+
+    <section id="iletisim" style="padding: 120px 0; background: var(--white); text-align: center;">
+        <div class="container reveal">
+            <h2 style="font-size: 3rem; margin-bottom: 25px; color: var(--deep-blue);">Birlikte Başlayalım</h2>
+            <p style="margin-bottom: 45px; color: var(--text-light);">Fikirlerinizi gerçeğe dönüştürmek için bir mail uzağınızdayız.</p>
+            <a href="mailto:birliktedigital@gmail.com" class="btn-primary">Bize Yazın</a>
+            <div style="margin-top: 30px;">
+                <p style="font-size: 0.85rem; color: var(--text-light);">Instagram: @birliktedigitalstudio</p>
+            </div>
+        </div>
     </section>
 
     <footer>
-       © 2026 Mert Web Studio • Tüm hakları saklıdır
+        <div class="container">
+            <p>&copy; 2026 Birlikte Web Studio. Tüm Hakları Saklıdır.</p>
+            <p style="font-size: 0.75rem; color: #aaa; margin-top: 12px; text-transform: uppercase; letter-spacing: 1px;">Crafted for Excellence</p>
+        </div>
     </footer>
 
+    <script>
+        const revealElements = document.querySelectorAll(".reveal");
+        
+        const revealOnScroll = () => {
+            const triggerBottom = window.innerHeight * 0.85;
+            
+            revealElements.forEach(el => {
+                const elementTop = el.getBoundingClientRect().top;
+                if (elementTop < triggerBottom) {
+                    el.classList.add("active");
+                }
+            });
+        };
 
+        window.addEventListener("scroll", revealOnScroll);
+        window.addEventListener("load", revealOnScroll);
+
+        const nav = document.getElementById('main-nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80) {
+                nav.style.padding = "12px 0";
+                nav.style.boxShadow = "0 10px 30px rgba(0,0,0,0.08)";
+                nav.style.background = "rgba(255, 255, 255, 0.95)";
+            } else {
+                nav.style.padding = "20px 0";
+                nav.style.boxShadow = "none";
+                nav.style.background = "rgba(255, 255, 255, 0.85)";
+            }
+        });
+    </script>
 </body>
 </html>
-
-
