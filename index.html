@@ -201,6 +201,9 @@
             border: 1px solid rgba(0,0,0,0.02);
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .service-card::after {
@@ -233,6 +236,22 @@
         .service-card p {
             color: var(--text-light);
             font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .demo-link {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent-pink);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            transition: var(--transition);
+        }
+
+        .demo-link:hover {
+            letter-spacing: 2px;
         }
 
         /* --- Seçili Projeler --- */
@@ -252,17 +271,26 @@
             border-radius: 30px;
             overflow: hidden;
             transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .project-img {
             width: 100%;
             height: 280px;
-            background: linear-gradient(45deg, #eee, #f9f9f9);
+            background: #eee;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-style: italic;
-            color: #bbb;
+            overflow: hidden;
+        }
+
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
         }
 
         .project-info {
@@ -272,6 +300,10 @@
         .project-card:hover {
             transform: scale(1.03);
             box-shadow: 0 40px 80px rgba(255, 143, 163, 0.12);
+        }
+
+        .project-card:hover .project-img img {
+            transform: scale(1.1);
         }
 
         /* --- Müşteri Yorumları --- */
@@ -315,8 +347,6 @@
             font-weight: 700;
             letter-spacing: 3px;
             font-size: 0.9rem;
-            flex-wrap: wrap;
-            gap: 20px;
         }
 
         /* --- Footer --- */
@@ -327,34 +357,10 @@
             border-top: 1px solid #f0f0f0;
         }
 
-        /* --- EKSTRA MOBİL UYUMLULUK CSS --- */
-        @media (max-width: 992px) {
-            .project-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
-        }
-
         @media (max-width: 768px) {
-            .nav-content { padding: 0 20px; }
-            .nav-links { display: none; } /* Mobilde sade görünüm için menü gizlendi */
-            .logo { font-size: 1.2rem; }
-            
-            header { height: auto; padding: 150px 0 100px 0; }
-            .hero-content h1 { font-size: 2.2rem; }
-            .hero-content p { font-size: 1rem; padding: 0 10px; }
-            
-            #biz-kimiz, #ne-yapiyoruz, #projeler, #yorumlar, #iletisim { padding: 80px 0; }
-            .section-title h2 { font-size: 2rem; }
-            
-            .about-flex { gap: 30px; text-align: center; }
-            .about-text { min-width: 100%; }
-            
-            .services-grid, .project-grid, .testimonial-grid { 
-                grid-template-columns: 1fr; 
-                gap: 20px;
-            }
-            
-            .service-card, .project-info, .testimonial-card { padding: 30px 20px; }
-            
-            #iletisim h2 { font-size: 2.2rem !important; }
+            .hero-content h1 { font-size: 2.8rem; }
+            .nav-links { display: none; }
+            .project-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -376,7 +382,7 @@
         <div class="container hero-content">
             <h1 class="reveal">Dijital Hikayenizi <br>Birlikte Yazalım</h1>
             <p class="reveal">Üniversite ruhuyla, profesyonel dokunuşları birleştiriyoruz. Markanız için en elit web çözümleri burada.</p>
-            <a href="https://www.instagram.com/birliktewebstudio/" target="_blank" class="btn-primary reveal">Ücretsiz Demo Başlat</a>
+            <a href="https://www.instagram.com/birliktewebstudio" target="_blank" class="btn-primary reveal">Ücretsiz Demo Başlat</a>
         </div>
     </header>
 
@@ -388,7 +394,7 @@
                 <p>Biz, tasarım dünyasına taze bir soluk getirmek isteyen iki üniversite öğrencisiyiz. "Birlikte Web" ismi, müşterilerimizle kurduğumuz şeffaf ve ortak çalışma disiplininden geliyor. Modern teknolojileri, samimi bir iletişimle harmanlayıp size özel çözümler üretiyoruz.</p>
             </div>
             <div class="about-text reveal">
-                <div style="background: linear-gradient(135deg, var(--accent-pink), #ffc3a0); height: 300px; border-radius: 40px; width: 100%; opacity: 0.15; display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--accent-pink);">
+                <div style="background: linear-gradient(135deg, var(--accent-pink), #ffc3a0); height: 350px; border-radius: 40px; width: 100%; opacity: 0.15; display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--accent-pink);">
                     PREMIUM STUDIO IMAGE
                 </div>
             </div>
@@ -403,28 +409,46 @@
             </div>
             <div class="services-grid">
                 <div class="service-card reveal">
-                    <h3>Kurumsal Web Sitesi</h3>
-                    <p>Şirketinizin prestijini yansıtan, güven veren ve kurumsal kimliğinizle tam uyumlu profesyonel çözümler.</p>
+                    <div>
+                        <h3>Kurumsal Web Sitesi</h3>
+                        <p>Şirketinizin prestijini yansıtan, güven veren ve kurumsal kimliğinizle tam uyumlu profesyonel çözümler.</p>
+                    </div>
+                    <a href="https://mertdenizkarabulut.github.io/Kurumsal-Web-Sitesi/" target="_blank" class="demo-link">Örneği İncele →</a>
                 </div>
                 <div class="service-card reveal">
-                    <h3>Kişisel Web Sitesi</h3>
-                    <p>Kendi markanızı yaratın. CV, portfolyo veya blog olarak kullanabileceğiniz, sizi yansıtan elit tasarımlar.</p>
+                    <div>
+                        <h3>Kişisel Web Sitesi</h3>
+                        <p>Kendi markanızı yaratın. CV, portfolyo veya blog olarak kullanabileceğiniz, sizi yansıtan elit tasarımlar.</p>
+                    </div>
+                    <a href="https://mertdenizkarabulut.github.io/Ki-isel-Web-Sitesi/" target="_blank" class="demo-link">Örneği İncele →</a>
                 </div>
                 <div class="service-card reveal">
-                    <h3>Sevgili & Arkadaşlık</h3>
-                    <p>Anılarınızı ölümsüzleştirin. Yıldönümleri veya özel günler için hazırlanan, QR kodlu duygusal dijital yolculuklar.</p>
+                    <div>
+                        <h3>Sevgili & Arkadaşlık</h3>
+                        <p>Anılarınızı ölümsüzleştirin. Yıldönümleri veya özel günler için hazırlanan, QR kodlu duygusal dijital yolculuklar.</p>
+                    </div>
+                    <a href="https://mertdenizkarabulut.github.io/Sevgili-Arkada-l-k/" target="_blank" class="demo-link">Örneği İncele →</a>
                 </div>
                 <div class="service-card reveal">
-                    <h3>Hediyelik Web Sayfaları</h3>
-                    <p>Sıradan hediyeleri unutun. Sevdiklerinize özel, sürprizlerle dolu ve onlara özel hazırlanmış dijital deneyimler.</p>
+                    <div>
+                        <h3>Hediyelik Web Sayfaları</h3>
+                        <p>Sıradan hediyeleri unutun. Sevdiklerinize özel, sürprizlerle dolu ve onlara özel hazırlanmış dijital deneyimler.</p>
+                    </div>
+                    <a href="https://mertdenizkarabulut.github.io/Hediyelik-Web-Sayfalar-/" target="_blank" class="demo-link">Örneği İncele →</a>
                 </div>
                 <div class="service-card reveal">
-                    <h3>Modern UI/UX</h3>
-                    <p>Sadece güzel değil, aynı zamanda kullanıcı dostu. Ziyaretçilerinizi sitenizde daha uzun süre tutan akışlar.</p>
+                    <div>
+                        <h3>Our Journey</h3>
+                        <p>Bir çiftin tüm anılarını interaktif bir harita üzerinde birleştiren dijital hediye.</p>
+                    </div>
+                    <a href="https://mertdenizkarabulut.github.io/Our-Journey/" target="_blank" class="demo-link">Örneği İncele →</a>
                 </div>
                 <div class="service-card reveal">
-                    <h3>Hız & SEO</h3>
-                    <p>Google sıralamalarında üstlerde yer alan, ışık hızında açılan teknik altyapısı kusursuz sayfalar.</p>
+                    <div>
+                        <h3>Artist Canvas</h3>
+                        <p>Minimalist, işlerin ön planda olduğu ultra modern bir sanatçı sayfası.</p>
+                    </div>
+                    <a href="https://mertdenizkarabulut.github.io/Artist-Canvas/" target="_blank" class="demo-link">Örneği İncele →</a>
                 </div>
             </div>
         </div>
@@ -437,19 +461,25 @@
             </div>
             <div class="project-grid">
                 <div class="project-card reveal">
-                    <div class="project-img">[Aşk Hikayesi Konsepti]</div>
+                    <div class="project-img">
+                        <img src="img/img2.png" alt="Our Journey Örneği">
+                    </div>
                     <div class="project-info">
                         <span class="badge">Özel Gün</span>
                         <h3>Our Journey</h3>
                         <p>Bir çiftin tüm anılarını interaktif bir harita üzerinde birleştiren dijital hediye.</p>
+                        <a href="https://mertdenizkarabulut.github.io/Our-Journey/" target="_blank" class="demo-link" style="margin-top: 15px;">Örneği İncele →</a>
                     </div>
                 </div>
                 <div class="project-card reveal">
-                    <div class="project-img">[Yaratıcı Sanatçı Portfolyosu]</div>
+                    <div class="project-img">
+                        <img src="img/img1.png" alt="Artist Canvas Örneği">
+                    </div>
                     <div class="project-info">
                         <span class="badge">Kişisel Web</span>
                         <h3>Artist Canvas</h3>
                         <p>Minimalist, işlerin ön planda olduğu ultra modern bir sanatçı sayfası.</p>
+                        <a href="https://mertdenizkarabulut.github.io/Artist-Canvas/" target="_blank" class="demo-link" style="margin-top: 15px;">Örneği İncele →</a>
                     </div>
                 </div>
             </div>
@@ -498,7 +528,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 Birlikte Web Studio. Tüm Hakları Saklıdır.</p>
+            <p>&copy; 2026 Birlikte Web Digital Studio. Tüm Hakları Saklıdır.</p>
             <p style="font-size: 0.75rem; color: #aaa; margin-top: 12px; text-transform: uppercase; letter-spacing: 1px;">Crafted for Excellence</p>
         </div>
     </footer>
